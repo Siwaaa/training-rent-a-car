@@ -1,4 +1,5 @@
-# test-1
+# rent-a-car
+# Тестовое задание
 
 ## Project setup
 ```
@@ -19,6 +20,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
