@@ -1,5 +1,5 @@
 <template>
-  <div class="font-sans container mx-auto mb-5">
+  <div class="font-sans sm:container sm:mx-auto mb-5">
     <Header />
     <div class="w-full h-screen bg-gray-100 rounded-3xl p-10">
       <router-view />

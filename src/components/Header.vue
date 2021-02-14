@@ -3,7 +3,7 @@
     <router-link to="/"
       ><img class="object-contain h-12" src="@/assets/img/logo.png"
     /></router-link>
-    <span class="text-gray-400 font-light"
+    <span class="text-gray-400 font-light hidden md:block"
       >World's first affordable airsharing</span
     >
     <div class="flex justify-between items-center w-60">
