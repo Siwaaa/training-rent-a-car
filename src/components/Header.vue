@@ -35,7 +35,7 @@
         />
       </svg>
       <div class="flex justify-between items-center cursor-pointer">
-        <span class="text-blue-900 mr-2">Andrei Sivcov</span>
+        <span class="text-blue-900 mr-2 hidden sm:block">Andrei Sivcov</span>
         <img
           class="object-contain h-12"
           src="@/assets/img/ava.png"

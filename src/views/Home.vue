@@ -21,10 +21,17 @@
 import Button from "../components/Button.vue";
 import FilterType from "../components/FilterType.vue";
 import ItemCar from '../components/ItemCar.vue';
+import { mapActions } from 'vuex';
 
 export default {
   name: "Home",
   components: { Button, FilterType, ItemCar },
+  methods: {
+    ...mapActions(['GET_TRANSPORT']),
+  },
+  created() {
+    this.GET_TRANSPORT()
+  },
 };
 </script>
 
