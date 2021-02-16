@@ -11,7 +11,9 @@
     </header>
     <div class="grid grid-cols-3 gap-4">
       <ItemCar
-        
+        v-for="item in allTransports"
+        :key="item.id"
+        :transports="item"
       />
     </div>
   </div>
@@ -21,10 +23,18 @@
 import Button from "../components/Button.vue";
 import FilterType from "../components/FilterType.vue";
 import ItemCar from '../components/ItemCar.vue';
-import { mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: "Home",
+  data() {
+    return {
+      
+    }
+  },
+  computed: {
+    ...mapGetters(['allTransports']),
+  },
   components: { Button, FilterType, ItemCar },
   methods: {
     ...mapActions(['GET_TRANSPORT']),
