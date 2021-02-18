@@ -15,6 +15,6 @@ git add -A
 git commit -m 'deploy'
 
 # если вы публикуете по адресу https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:Siwaaa/training-rent-a-car.git master
+git push -f git@github.com:Siwaaa/training-rent-a-car.git master:gh-pages
 
 cd -
