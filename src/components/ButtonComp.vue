@@ -6,19 +6,11 @@
 
 <script>
 export default {
-  name: "Button",
+  name: "ButtonComp",
   props: {
-    title: {
-      type: String,
-      // required: true,
-      default: "title",
-      validator(value) {
-        return value;
-      },
-    },
   },
   data: () => ({
-    counter: 0,
+    
   }),
   methods: {},
 };

@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       valueFilter: "",
-      arrayTypes: ["all", "airship", "rocket", "helicopter", "plane"],
+      arrayTypes: ["all", "airship", "rocket", "helicopter", "plane", "custom"],
     };
   },
 };

@@ -12,9 +12,6 @@ import Header from '../components/Header.vue'
 export default {
   name: 'DashboardLayout',
   components: {Header},
-  computed: {
-    
-  },
 }
 </script>
 

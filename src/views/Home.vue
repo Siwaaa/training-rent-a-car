@@ -6,28 +6,31 @@
       </div>
       <div class="text-blue-900">
         Add new
-        <Button>+</Button>
+        <ButtonComp @click.native="openForm">+</ButtonComp>
       </div>
     </header>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <ItemCar v-for="item in transports" :key="item.id" :transports="item" />
     </div>
+    <Form v-show="vis" @clickClose="closeForm" @sendForm="handlerForm"/>
   </div>
 </template>
 
 <script>
-import Button from "../components/Button.vue";
+import ButtonComp from "../components/ButtonComp.vue";
 import FilterType from "../components/FilterType.vue";
 import ItemCar from "../components/ItemCar.vue";
+import Form from '../components/Form.vue';
 import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Home",
-  components: { Button, FilterType, ItemCar },
+  components: { ButtonComp, FilterType, ItemCar, Form },
   data() {
     return {
       value: "",
       filterTrans: null,
+      vis: false
     };
   },
   computed: {
@@ -37,14 +40,29 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["GET_TRANSPORT"]),
+    ...mapActions(["GET_TRANSPORT", "ADD_TRANSPORT"]),
+    openForm() {
+      this.vis = true
+      document.body.style.overflowY = "hidden";
+    },
+    closeForm() {
+      this.vis = false
+      document.body.style.overflowY = "auto";
+    },
+    handlerForm(data) {
+      this.ADD_TRANSPORT(data)
+      this.closeForm()
+    }
   },
   created() {
     this.GET_TRANSPORT();
   },
   watch: {
     value: function (val, oldVal) {
-      this.filterTrans = (val !== "all") ? this.allTransports.filter(item => item.type === val) : this.allTransports; 
+      this.filterTrans =
+        val !== "all"
+          ? this.allTransports.filter((item) => item.type === val)
+          : this.allTransports;
       console.log(this.filterTrans);
       console.log("новое значение: %s, старое значение: %s", val, oldVal);
     },

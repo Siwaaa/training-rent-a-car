@@ -11,6 +11,9 @@ export default new Vuex.Store({
   mutations: {
     updateTrans(state, trans) {
       state.transports = trans
+    },
+    addTrans(state, trans) {
+      state.transports.unshift(trans)
     }
   },
   actions: {
@@ -26,6 +29,9 @@ export default new Vuex.Store({
         }
       );
     },
+    ADD_TRANSPORT(ctx, data) {
+      ctx.commit('addTrans', data);
+    }
   },
   getters: {
     allTransports(state) {

@@ -41,19 +41,19 @@
           <span>Rent for </span>
           <span class="text-pink-600 font-semibold">{{ carObj.rent}} $/h</span>
         </div>
-        <Button>Rent now</Button>
+        <ButtonComp>Rent now</ButtonComp>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Button from "../components/Button.vue";
+import ButtonComp from "../components/ButtonComp.vue";
 // import {allTransports} from 'vuex'
 
 export default {
   name: "Car",
-  components: { Button },
+  components: { ButtonComp },
   data() {
     return {
       carObj: null
