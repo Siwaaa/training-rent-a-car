@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    transports: []
+    transports: JSON.parse(localStorage.getItem('transports')) || null
   },
   mutations: {
     updateTrans(state, trans) {
@@ -16,8 +16,14 @@ export default new Vuex.Store({
   actions: {
     async GET_TRANSPORT(ctx) {
       await getVehicles().then(
-        result => ctx.commit('updateTrans', result),
-        error => alert('Ошибка загрузки данных. Попробуйте обновить страницу',error)
+        result => {
+          ctx.commit('updateTrans', result);
+          localStorage.setItem('transports', JSON.stringify(result))
+        },
+        error => {
+          alert('Искусственная ошибка загрузки данных. Давайте обновим страницу', error)
+          this.$router.push('/')
+        }
       );
     },
   },

@@ -1,16 +1,20 @@
 <template>
-  <div class="s grid grid-cols-1 sm:grid-cols-2 gap-4">
+  <div class="s grid grid-cols-1 md:grid-cols-2 gap-16">
     <div class="left w-auto">
       <img src="@/assets/img/a.jpg" alt="" class="rounded-2xl overflow-hidden w-full">
     </div>
     <div class="right">
-      <h1 class="text-xl md:text-4xl mt-4 mb-10">XR-74 «Cooper»</h1>
+      <h1 class="text-xl md:text-4xl mt-4 mb-8">{{ carObj.name }}</h1>
       <div class="route-ul">
-        <ul class="text-gray-600">
-          <li>Specifications</li>
-          <li>Team</li>
-          <li>Rent terms</li>
+        <ul class="text-gray-600 flex mb-4">
+          <li><router-link :to="{ name: 'Specifications' }" class="mr-4">Specifications</router-link></li>
+          <li><router-link :to="{ name: 'Team' }" class="mr-4">Team</router-link></li>
+          <li><router-link :to="{ name: 'RentTerms' }">Rent terms</router-link></li>
         </ul>
+        <transition name="fade" mode="out-in">
+          <router-view/>
+        </transition>
+        
       </div>
       <div class="features mb-10">
         <div class="item flex justify-between items-center mb-2">
@@ -35,7 +39,7 @@
       <div class="flex justify-between items-center bg-white rounded-2xl p-4">
         <div class="as">
           <span>Rent for </span>
-          <span class="text-pink-600 font-semibold">164</span>
+          <span class="text-pink-600 font-semibold">{{ carObj.rent}} $/h</span>
         </div>
         <Button>Rent now</Button>
       </div>
@@ -45,12 +49,36 @@
 
 <script>
 import Button from "../components/Button.vue";
+// import {allTransports} from 'vuex'
 
 export default {
   name: "Car",
   components: { Button },
+  data() {
+    return {
+      carObj: null
+    }
+  },
+  computed: {
+
+  },
+  created() {
+    const car = this.$store.getters.allTransports.find(item => item.id === this.$route.params.id)
+    if (car) {
+      this.carObj = car
+    }
+  },
 };
 </script>
 
-<style>
+<style scoped>
+a.router-link-active {
+  color: rgb(29, 78, 216);
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}
 </style>
