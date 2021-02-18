@@ -1,7 +1,7 @@
 <template>
   <div class="s grid grid-cols-1 md:grid-cols-2 gap-16">
     <div class="left w-auto">
-      <img src="@/assets/img/a.jpg" alt="" class="rounded-2xl overflow-hidden w-full">
+      <img :src="carObj.image" alt="" class="rounded-2xl overflow-hidden w-full">
     </div>
     <div class="right">
       <h1 class="text-xl md:text-4xl mt-4 mb-8">{{ carObj.name }}</h1>

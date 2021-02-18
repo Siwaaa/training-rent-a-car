@@ -2,7 +2,7 @@
   <div>
     <header class="flex justify-between items-center mb-12">
       <div class="text-3xl">
-        <FilterType></FilterType>
+        <FilterType v-model="value" />
       </div>
       <div class="text-blue-900">
         Add new
@@ -10,11 +10,7 @@
       </div>
     </header>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <ItemCar
-        v-for="item in allTransports"
-        :key="item.id"
-        :transports="item"
-      />
+      <ItemCar v-for="item in transports" :key="item.id" :transports="item" />
     </div>
   </div>
 </template>
@@ -22,25 +18,36 @@
 <script>
 import Button from "../components/Button.vue";
 import FilterType from "../components/FilterType.vue";
-import ItemCar from '../components/ItemCar.vue';
-import { mapGetters, mapActions } from 'vuex';
+import ItemCar from "../components/ItemCar.vue";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Home",
+  components: { Button, FilterType, ItemCar },
   data() {
     return {
-      
-    }
+      value: "",
+      filterTrans: null,
+    };
   },
   computed: {
-    ...mapGetters(['allTransports']),
+    ...mapGetters(["allTransports"]),
+    transports() {
+      return this.filterTrans || this.allTransports;
+    },
   },
-  components: { Button, FilterType, ItemCar },
   methods: {
-    ...mapActions(['GET_TRANSPORT']),
+    ...mapActions(["GET_TRANSPORT"]),
   },
   created() {
-    this.GET_TRANSPORT()
+    this.GET_TRANSPORT();
+  },
+  watch: {
+    value: function (val, oldVal) {
+      this.filterTrans = (val !== "all") ? this.allTransports.filter(item => item.type === val) : this.allTransports; 
+      console.log(this.filterTrans);
+      console.log("новое значение: %s, старое значение: %s", val, oldVal);
+    },
   },
 };
 </script>
