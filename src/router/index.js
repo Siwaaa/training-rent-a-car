@@ -42,6 +42,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  base: '/training-rent-a-car/',
   routes
 })
 
