@@ -39,7 +39,8 @@
 >UPD. В процессе работы были внесены корректировки
 ![alt text](shem.png)
 
-
+# Результат
+https://siwaaa.github.io/training-rent-a-car/
 
 ## Project setup
 ```
